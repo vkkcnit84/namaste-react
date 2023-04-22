@@ -1,37 +1,31 @@
-
-/**
- * 
- * <div id="parent">
- * 
- *  <div id="child">
- *    I am child
- * </div>
- * 
- * <div id="child1">
- *  I am child2
- * </div>
- * <h1>Hello</h1>
- * </div>
- * 
- * 
- */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-const heading = React.createElement("div", {id: 'parent'}, [React.createElement("div",
-{
-    id: 'child'
-}, "I am child"), 
-React.createElement("div",
-{
-    id: 'child1'
-}, "I am child2"),
-React.createElement("h1",
-{
-}, "hello h1")
-]);
 
-console.log('heading:', heading)
-const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(heading);
+//React Funtional Component
+const Heading = () => { return <h1 className='testclass'>I am react functional Component1 inside another Component</h1> };
+
+// React Element
+const reactElement = <span><h1>I am react Element</h1></span>
+
+//React Funtional Component
+const HeadingComponent = () => {
+    return (
+        <div>
+            {reactElement}
+            <Heading />
+            {console.log('hi console')}
+            <h1>I am React Funtional Component 2</h1>
+        </div>
+    )
+}
+
+console.log('reactElement:',reactElement);
+console.log('HeadingComponent:',HeadingComponent);
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+// const headingWithJSX = <h1 className="jsxclass">I am from JSX</h1>
+// console.log(headingWithJSX)
+root.render(<HeadingComponent />);
