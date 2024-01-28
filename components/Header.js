@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 const Header = () => {
 
   const [btnText, setBtnText] = useState("Login");
-  // console.log('HEADER')
-
 
     return (
       <div className="header">
@@ -12,9 +12,15 @@ const Header = () => {
         </header>
         <nav>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Contact</a></li>
+            <li>
+              <Link to={"/"}>Home</Link>
+             </li>
+            <li>
+              <Link to={"/about"} >About</Link>  
+            </li>
+            <li>
+              <Link to={"/contact"}>Contact</Link>
+            </li>
             <li><a href="#" onClick={() => 
               (btnText==='Login') ? setBtnText('Logout') : setBtnText('Login')
               }>{btnText}</a></li>

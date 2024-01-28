@@ -3,6 +3,8 @@ import resList from "../mockData.js";
 import { useState, useEffect } from "react";
 import {END_POINT}  from "../constant.js";
 import Simmer from "./Simmer";
+import { Link } from "react-router-dom";
+
 
 const Body = () => {
 const [listofRestro, setListofRestro] = useState([]);
@@ -50,7 +52,10 @@ return (
       <div className="maincard">
         <div className="">
           {listofRestro.map(({info}) => (
+            
+          <Link to={`/restaurant/${info.id}`} key={info.id}>
             <RestroCard key={info.id} resData={info} />
+          </Link>
           ))}
         </div>
       </div>
