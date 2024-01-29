@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import onlineStatus from "../utils/useIsOnline";
 const Header = () => {
 
   const [btnText, setBtnText] = useState("Login");
@@ -20,6 +20,13 @@ const Header = () => {
             </li>
             <li>
               <Link to={"/contact"}>Contact</Link>
+            </li>
+            <li>
+              <Link to={"/grocery"}>Grocery</Link>
+            </li>
+            
+            <li>
+              Online Status: {(onlineStatus()) ? "🟢" : "🔴"}
             </li>
             <li><a href="#" onClick={() => 
               (btnText==='Login') ? setBtnText('Logout') : setBtnText('Login')

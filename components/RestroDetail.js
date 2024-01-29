@@ -2,22 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { RESTRO_DETAIL_URL, CDN_URL } from "../constant";
 import Simmer from "./Simmer";
+import useRestroDetail from "../utils/useRestroDetail";
+
 
 const RestaurantDetail = () => {
 
-  const [restroDetail, useRestroDetail] = useState([]);
-  useEffect(() => {
-    fetchData();
-  }, []);
   const { id } = useParams();
-
-  const fetchData = async () => {
-    const data = await fetch(`${RESTRO_DETAIL_URL}&restaurantId=${id}`);
-    const jsonData = await data.json();
-    useRestroDetail(jsonData);
-  };
-
-   console.log('ID', id)
+  const restroDetail = useRestroDetail(id)
 
   if (restroDetail.length === 0) {
     return <Simmer />;
@@ -27,7 +18,7 @@ const RestaurantDetail = () => {
     console.log("RES", name);
     // const imageUrl = `${RESTRO_DETAIL_URL}/${cloudinaryImageId}`
     const imageUrl = `${CDN_URL}/${cloudinaryImageId}`
-    console.log('IMG', imageUrl)
+    // console.log('IMG', imageUrl)
     return (
       <div>
         <h1>{name}</h1>
