@@ -1,25 +1,42 @@
-import React, { Suspense, lazy} from "react";
+import React, { Suspense, lazy, useEffect, useState} from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header.js";
-import Body from "./components/Body.js";
-import Error from "./components/Error.js";
-import Contact from "./components/Contact.js";
-import About from "./components/About.js";
-import RestroDetail from "./components/RestroDetail.js";
+import Header from "./src/components/Header.js";
+import Body from "./src/components/Body.js";
+import Error from "./src/components/Error.js";
+import Contact from "./src/components/Contact.js";
+import About from "./src/components/About.js";
+import RestroDetail from "./src/components/RestroDetail.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import './index.css'
+import UserDetails from "./utils/userContext.js";
 
 const AppLayout = ()  => {
+    const [userName, setUserName] = useState('Advik');
+    useEffect(() => {
+        // setTimeout(() => {
+        //     setUserName('Update Singh');
+        // }, 3000)
+        setUserName('Update Singh');
+    }, [])
  return (
   <>
-  <Header />
-  <Outlet />
+  <div className="flex-col">
+    <UserDetails.Provider value={{ loggedInUser: userName, setUserName}}>
+    <div className="">
+        <Header />
+    </div>
+    <div>
+        <Outlet />
+    </div>
+    </UserDetails.Provider>
+
+  </div>
   </>
  ) 
 }
 
 const Grocery = lazy(() => {
-   return import('./components/Grocery.js');
+   return import('./src/components/Grocery.js');
 });
 
 const appRouter = createBrowserRouter([
