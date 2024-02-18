@@ -17,7 +17,8 @@ const RestroCategory = ({card, showIndex, setShowIndex}) => {
         <span className="">+</span>
       </div>
       <div>
-       { showIndex && <Item {...card} />}
+      {/* {console.log('CART COMP1:', card.card.itemCards)} */}
+       { showIndex && <Item items={card.card.itemCards} />}
       </div>
     </div>
   );

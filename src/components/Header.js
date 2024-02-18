@@ -2,10 +2,12 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import onlineStatus from "../../utils/useIsOnline";
 import UserDetails from "../../utils/userContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnText, setBtnText] = useState("Login");
   const data = useContext(UserDetails);
+  const cart = useSelector((state) => state.cart.items);
   
     return (
       <div className="flex mt-10 bg-gray-400 w-full h-20 items-center justify-between">
@@ -30,6 +32,10 @@ const Header = () => {
             </div>
             <div>
               <span>UserName: {data.loggedInUser}</span>
+            </div>
+            <div className="cursor-pointer">
+            <Link to={"/cart"}>Cart: {cart.length}</Link>
+              {/* <span> </span> */}
             </div>
           <div className="p-2">
             <a href="#" onClick={() => 
